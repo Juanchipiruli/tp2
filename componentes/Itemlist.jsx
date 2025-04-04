@@ -1,20 +1,14 @@
 import { useState } from 'react'
 
- export function Itemlist ({name}) {
-    const [cant, setCant]= useState(0)
-    function sum () {
-        setCant(prepCant => prepCant + 1);
-    }
+ export function Itemlist ({name, cant, func}) {
+    
     return (
         <>
         <p>
-            {name}
+            item:{name} cantidad:{cant}
         </p>
         <div>
-            <button onClick={sum}></button>
-            <p>
-                {cant}
-            </p>
+            <button onClick={()=>func(name)}></button>
         </div>
         </>
     )
