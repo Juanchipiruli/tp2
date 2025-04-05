@@ -1,40 +1,66 @@
 import { use, useState } from 'react'
 import './App.css'
-import { Itemlist } from '../componentes/Itemlist';
-import {ItemComprado} from '../componentes/ItemComprado'
+import { Shoping } from '../componentes/Shoping';
+import { Listo } from '../componentes/Listo';
 
 function App() {
   const [list, setList] = useState([]);
-  const [comprado, setState] = useState([])
+  const [comprado, setState] = useState([])  
   const [name, setName] = useState("");
-  const [cant, setCant] = useState(0);
+  const [cant, setCant] = useState("");
 
   const nuevoItem = (e) => {
     e.preventDefault();
-    if(name.length){
-    setList([{name, cant}, ...list]);
-    setName("");
-    }else{
-      alert("Ingrese un nombre")
+    if (!name.trim()) /*Trim es una funcion que detecta que no sea una cadena vacia ni sea una de caracteres vacios*/  {
+      alert("Por favor ingrese un nombre");
+      return;
     }
+    if (!cant || parseInt(cant) <= 0) {
+      alert("Por favor ingrese una cantidad válida mayor a 0");
+      return;
+    }
+    
+    setList([{name, cant: parseInt(cant), stado: true}, ...list]);
+    setName("");
+    setCant("");
   }
 
   const handleChangeInput = (e) => {
-    setName(e.target.value);
-  }
-  const sacar =(name) => {
-    const lista = list.filter(item =>{
-      if(item.name!== name){
-        return item
-      }else{
-        e.preventDefault();
-        setState([{name, cant}, ...lista])
-      }
+    const { name, value } = e.target;
+    if (name === "itemName") {
+      setName(value);
+    } else if (name === "itemCant") {
+      setCant(value);
     }
-    )
-    setList(lista)
   }
-
+  const sacar = (name) => {
+    const itemToMove = list.find(item => item.name === name);
+    if (itemToMove!== null) {
+      const newList = list.filter(item => item.name !== name);
+      setList(newList);
+      setState([{name: itemToMove.name}, ...comprado]);
+    }
+  }
+  const devolver = (name) => {
+    const itemToMove = comprado.find(item => item.name === name);
+    if (itemToMove!== null) {
+      const newList = comprado.filter(item => item.name!== name);
+      setState(newList);
+      setList([{name: itemToMove.name, cant: 1},...list]);
+    }
+  }
+  const cambio = (name, cant, supr) => {
+    if (supr) {
+      const newList = list.filter(item => item.name!== name);
+      setList(newList);
+      return;
+    }else{
+      const newList = list.map(item => 
+        item.name === name ? {name: name, cant: parseInt(cant)} : item
+      );
+      setList(newList);
+    }
+  }
 
   return (
     <>
@@ -43,27 +69,35 @@ function App() {
           GroceryList
         </h1>
       </header>
+      <main>
       <section className='container'>
         <section className="formu">
           <form onSubmit={nuevoItem}>
-            <input type="text" value={name} onChange={handleChangeInput}/>
-            <input type='text' value={cant} onChange={handleChangeInput}/>
+            <input 
+              type="text" 
+              name="itemName"
+              value={name} 
+              onChange={handleChangeInput}
+              placeholder="Nombre"
+            />
+            <input 
+              type="number" 
+              name="itemCant"
+              value={cant} 
+              onChange={handleChangeInput}
+              placeholder="Cantidad"
+            />
             <button className='submit'>+</button>
           </form>
           <section className="list">
-            {list.map(item => (
-              <Itemlist key={item.name} name={item.name} cant={item.cant} func={sacar}/>
-            ))}
+            <Shoping key="ListaDeCompras" lista={list} sacar={sacar} cambio={cambio}/>
           </section>
           <section className="comprados">
-            {
-              comprado.map(item => (
-                <ItemComprado key={item.name} name={item.name} />
-              ))
-            }
+              <Listo key="ListaYaComprado" lista={comprado} devolver={devolver}/>
           </section>
         </section>
       </section>
+      </main>
     </>
   )
 }
