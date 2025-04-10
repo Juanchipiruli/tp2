@@ -87,3 +87,9 @@ header h1{
 ::-webkit-scrollbar-thumb:hover {
     background-color: #ff0000; 
 }
+
+@media screen and (max-width: 715px) {
+    .container .formu{
+        width: 75%;
+    }
+}

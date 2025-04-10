@@ -45,7 +45,8 @@ export function Itemlist ({name, cant, func, stado, cambio}) {
                         </button>
                         {editing ? (
                             <>
-                                <input 
+                                <input
+                                    className='edicion' 
                                     type="number"
                                     value={newCant}
                                     onChange={handleCantChange}
