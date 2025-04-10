@@ -1,0 +1,28 @@
+.list{
+    width: 100%;
+    border-top: 3px solid #BA181B;
+    background-color: #0B090A;
+    background: linear-gradient(to bottom, #0B090A 50%, #161A1D 60%);
+    align-items: center;
+    margin-bottom: 35px;
+}
+.list h2{
+    padding: 10px;
+    margin: 0px;
+    color: #BA181B;
+    font-family: "Boldonse", sans-serif;
+    letter-spacing: 3px;
+}
+.list .listaitems{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+p{
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+    font-weight: 700;
+    color: #D3D3D3;
+}

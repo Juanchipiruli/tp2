@@ -1,0 +1,74 @@
+.ContItem {
+    background-color: #2d2d2d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 64px;
+    border-radius: 7px;
+    transition: box-shadow 1s ease-in-out;
+}
+.ContItem:hover{
+    box-shadow: 5px 5px 0px 0px #A4161A;
+}
+.item{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.botones {
+    display: flex;
+    gap: 20px;
+    right: 0;
+    padding: 0px 50px 0px 0px;
+}
+.info{
+    padding: 0px 20px;
+    display: flex;
+    gap: 20px;
+}
+.info h3{
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+    font-weight: 700;
+    color: #D3D3D3;
+}
+.borrar {
+    
+    background-color: #780000;
+}
+.botones button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 33px;
+    height: 33px;
+    border: 0px;
+    border-radius: 3px;
+    transition: box-shadow 1s ease-in-out;
+}
+.editar{
+    background-color: #003049;
+}
+.editar:hover{
+    box-shadow: 5px 5px 0px 0px #002234;
+}
+.guardar{
+    background-color: #06d660;
+}
+.guardar:hover{
+    box-shadow: 5px 5px 0px 0px #005429;
+}
+.tildar{
+    background-color: #34073D;
+}
+.tildar:hover{
+    box-shadow: 5px 5px 0px 0px #240529;
+}
+.devolver{
+    background-color: #EF745C; 
+}
+.devolver:hover{
+    box-shadow: 5px 5px 0px 0px #a4301c; 
+}

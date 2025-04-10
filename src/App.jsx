@@ -9,7 +9,7 @@ function App() {
   const [name, setName] = useState("");
   const [cant, setCant] = useState("");
 
-  const nuevoItem = (e) => {
+  const nuevoItem = (e) => /* Funcion que recolecta las variables name y cant y las envía a la lista "list"*/{
     e.preventDefault();
     if (!name.trim()) /*Trim es una funcion que detecta que no sea una cadena vacia ni sea una de caracteres vacios*/  {
       alert("Por favor ingrese un nombre");
@@ -26,12 +26,13 @@ function App() {
   }
 
   const handleChangeInput = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target; /* target se usa para obtener los valores que existen en los imput */
     if (name === "itemName") {
       setName(value);
     } else if (name === "itemCant") {
       setCant(value);
     }
+    /*Se lee 'name', que seria el id de cada input y se guarda en su respectiva variable*/
   }
   const sacar = (name) => {
     const itemToMove = list.find(item => item.name === name);
@@ -40,6 +41,7 @@ function App() {
       setList(newList);
       setState([{name: itemToMove.name}, ...comprado]);
     }
+    /* Se busca el item que se desea sacar, se crea una lista donde se elimine,y se le agrega a la otra lista. */
   }
   const devolver = (name) => {
     const itemToMove = comprado.find(item => item.name === name);
@@ -48,6 +50,7 @@ function App() {
       setState(newList);
       setList([{name: itemToMove.name, cant: 1},...list]);
     }
+    /* Se hace lo inverso de la funcion sacar */
   }
   const cambio = (name, cant, supr) => {
     if (supr) {
@@ -60,13 +63,14 @@ function App() {
       );
       setList(newList);
     }
+    /* Si supr retorna verdadero se elimina, sino se edita el item*/
   }
 
   return (
     <>
       <header>
         <h1>
-          GroceryList
+          Grocery List
         </h1>
       </header>
       <main>
@@ -89,15 +93,16 @@ function App() {
             />
             <button className='submit'>+</button>
           </form>
-          <section className="list">
+        </section>
+      </section>
+      <section className="list">
             <Shoping key="ListaDeCompras" lista={list} sacar={sacar} cambio={cambio}/>
           </section>
           <section className="comprados">
               <Listo key="ListaYaComprado" lista={comprado} devolver={devolver}/>
           </section>
-        </section>
-      </section>
       </main>
+      
     </>
   )
 }

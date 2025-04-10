@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import './estilos/items.css';
 
 export function Itemlist ({name, cant, func, stado, cambio}) {
     const [editing, setEditing] = useState(false);
@@ -6,7 +7,7 @@ export function Itemlist ({name, cant, func, stado, cambio}) {
 
     const editar = () => {
         setEditing(!editing);
-    }
+    }/* Funciona como una funcion que invierte el valor de una flag que activa o desactiva el modo de edicion*/
 
     const handleCantChange = (e) => {
         setNewCant(e.target.value);
@@ -21,24 +22,27 @@ export function Itemlist ({name, cant, func, stado, cambio}) {
         setNewCant("");
         setEditing(false);
     }
+    /* Se actualizan los datos del objeto, se manda al app.jsx los nuevos datos y si se desea eliminar o no (con el supr) */
     const supr = () => {
         cambio(name, cant, true);
     }
 
     return (
-        <>
+        <div className='ContItem'>
             {stado ? (
                 <div className='item'>
-                    <p>
-                        {name} 
-                    </p>
-                    <p>
-                        {cant}
-                    </p>
-                    <div>
-                        <button onClick={() => func(name)}>Comprado</button>
+                    <div className="info">
+                        <h3>
+                            {name} 
+                        </h3>
+                        <h3>
+                            {cant}
+                        </h3>
                     </div>
-                    <div>
+                    <div className='botones'>
+                        <button className='tildar' onClick={() => func(name)}>
+                            <img src="../fotos/download.png" alt="delete" />
+                        </button>
                         {editing ? (
                             <>
                                 <input 
@@ -47,24 +51,35 @@ export function Itemlist ({name, cant, func, stado, cambio}) {
                                     onChange={handleCantChange}
                                     min="1"
                                 />
-                                <button onClick={saveChanges}>Guardar</button>
-                                <button onClick={supr}>Borrar</button>
+                                <button className='guardar' onClick={saveChanges}>
+                                    <img src="../fotos/palomita.png"/>
+                                </button>
+                                <button className='borrar' onClick={supr}>
+                                    <img src="../fotos/trash.png"/>
+                                </button>
                             </>
                         ) : (
-                            <button onClick={editar}>Editar</button>
+                            <button className='editar' onClick={editar}>
+                                <img src="../fotos/edit.png"/>
+                            </button>
                         )}
                     </div>
                 </div>
             ) : (
-                <div className='compradito'>
-                    <p>
-                        item:{name}
-                    </p>
-                    <div>
-                        <button onClick={() => func(name)}>Devolver</button>
+                <div className='item'>
+                    <div className="info">
+                        <h3>
+                            {name}
+                        </h3>
+                    </div>
+                    
+                    <div className='botones'>
+                        <button className='devolver' onClick={() => func(name)}>
+                            <img src="../fotos/up.png"/>
+                        </button>
                     </div>
                 </div>
             )}
-        </>
+        </div>
     )
 }

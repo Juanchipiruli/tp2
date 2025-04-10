@@ -1,8 +1,10 @@
 import { Itemlist } from "./Itemlist";
+import './estilos/shoping.css'
 export function Listo({ lista= [], devolver }) {
     return (
-        <section className="comprados">
+        <section className="list">
             <h2>Items Comprados</h2>
+            <div className="listaitems">
             {lista.length!== 0? (
                 lista.map(item => (
                     <Itemlist
@@ -16,6 +18,9 @@ export function Listo({ lista= [], devolver }) {
             ): (
                 <p>No hay items comprados</p>
             )}
+            </div>
+            
         </section>
     );
+    /* Se mapea la lista y se muestra su contenido, sino  se muestra que no hay items */
 }
