@@ -48,6 +48,9 @@
     border-radius: 3px;
     transition: box-shadow 1s ease-in-out;
 }
+.botones button:hover{
+    cursor: pointer;
+}
 .editar{
     background-color: #003049;
 }
