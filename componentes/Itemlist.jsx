@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import './estilos/items.css';
+import { FaCheck, FaEdit, FaSave, FaTrash } from 'react-icons/fa';
+import { GoArrowUp } from "react-icons/go";
 
 export function Itemlist ({name, cant, func, stado, cambio}) {
     const [editing, setEditing] = useState(false);
@@ -41,7 +43,7 @@ export function Itemlist ({name, cant, func, stado, cambio}) {
                     </div>
                     <div className='botones'>
                         <button className='tildar' onClick={() => func(name)}>
-                            <img src="../fotos/download.png" alt="delete" />
+                            <FaCheck/>
                         </button>
                         {editing ? (
                             <>
@@ -53,15 +55,15 @@ export function Itemlist ({name, cant, func, stado, cambio}) {
                                     min="1"
                                 />
                                 <button className='guardar' onClick={saveChanges}>
-                                    <img src="../fotos/palomita.png"/>
+                                    <FaSave/>
                                 </button>
                                 <button className='borrar' onClick={supr}>
-                                    <img src="../fotos/trash.png"/>
+                                    <FaTrash/>
                                 </button>
                             </>
                         ) : (
                             <button className='editar' onClick={editar}>
-                                <img src="../fotos/edit.png"/>
+                                <FaEdit/>
                             </button>
                         )}
                     </div>
@@ -69,14 +71,14 @@ export function Itemlist ({name, cant, func, stado, cambio}) {
             ) : (
                 <div className='item'>
                     <div className="info">
-                        <h3>
+                        <h3 className='tachado'>
                             {name}
                         </h3>
                     </div>
                     
                     <div className='botones'>
                         <button className='devolver' onClick={() => func(name)}>
-                            <img src="../fotos/up.png"/>
+                            <GoArrowUp/>
                         </button>
                     </div>
                 </div>
