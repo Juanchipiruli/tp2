@@ -1,6 +1,6 @@
 import { Itemlist } from "./Itemlist";
 import './estilos/shoping.css'
-export function Listo({ lista= [], devolver }) {
+export function Listo({ lista= [], devolver, cambio}) {
     return (
         <section className="list">
             <h2>Items Comprados</h2>
@@ -13,6 +13,7 @@ export function Listo({ lista= [], devolver }) {
                         cant={item.cant}
                         func={devolver}
                         stado={false}
+                        cambio={cambio}
                     />
                 ))
             ): (

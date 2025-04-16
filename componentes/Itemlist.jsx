@@ -26,7 +26,7 @@ export function Itemlist ({name, cant, func, stado, cambio}) {
     }
     /* Se actualizan los datos del objeto, se manda al app.jsx los nuevos datos y si se desea eliminar o no (con el supr) */
     const supr = () => {
-        cambio(name, cant, true);
+        cambio(name, cant, true, stado);
     }
 
     return (
@@ -79,6 +79,9 @@ export function Itemlist ({name, cant, func, stado, cambio}) {
                     <div className='botones'>
                         <button className='devolver' onClick={() => func(name)}>
                             <GoArrowUp/>
+                        </button>
+                        <button className='borrar' onClick={supr}>
+                            <FaTrash/>
                         </button>
                     </div>
                 </div>

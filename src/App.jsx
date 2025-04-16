@@ -52,10 +52,16 @@ function App() {
     }
     /* Se hace lo inverso de la funcion sacar */
   }
-  const cambio = (name, cant, supr) => {
+  const cambio = (name, cant, supr,  stado) => {
     if (supr) {
-      const newList = list.filter(item => item.name!== name);
-      setList(newList);
+      if (stado){
+        const newList = list.filter(item => item.name!== name);
+        setList(newList);
+      }else{
+        const newList2 = comprado.filter(item => item.name!== name);
+        setState(newList2);
+      }
+      
       return;
     }else{
       const newList = list.map(item => 
@@ -99,7 +105,7 @@ function App() {
             <Shoping key="ListaDeCompras" lista={list} sacar={sacar} cambio={cambio}/>
           </section>
           <section className="comprados">
-              <Listo key="ListaYaComprado" lista={comprado} devolver={devolver}/>
+              <Listo key="ListaYaComprado" lista={comprado} devolver={devolver} cambio={cambio}/>
           </section>
       </main>
       
